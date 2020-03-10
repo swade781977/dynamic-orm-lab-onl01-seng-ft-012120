@@ -46,7 +46,11 @@ class InteractiveRecord
   end
   
   def save
+<<<<<<< HEAD
     DB[:conn].execute("INSERT INTO #{table_name_for_insert} (#{col_names_for_insert}) VALUES (#{values_for_insert})")
+=======
+    DB[:conn].execute("INSERT INTO #{table_name_for_insert} (#{col_names_for_insert}) VALUES (?)", [values_for_insert])
+>>>>>>> 9fcfca54ae363d915b0fbe5d7c5bfc968a5a4621
     
     @id = DB[:conn].execute("SELECT last_insert_rowid() FROM #{table_name_for_insert}")[0][0]
   end
@@ -55,12 +59,15 @@ class InteractiveRecord
     DB[:conn].execute("SELECT * FROM #{self.table_name} WHERE name = ?", [name])
   end
   
+<<<<<<< HEAD
   def self.find_by(hash)
     arr = hash.to_a 
     key = arr[0][0].to_s
     value = arr[0][1]
     DB[:conn].execute("SELECT * FROM #{self.table_name} WHERE #{key} = ?", [value])
   end
+=======
+>>>>>>> 9fcfca54ae363d915b0fbe5d7c5bfc968a5a4621
   
   
   
